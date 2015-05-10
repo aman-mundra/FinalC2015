@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.Collections.ObjectModel;
-namespace Checkbook.Mundra
+namespace Checkbook
 {
     public class CheckBookVM : BaseVM
     {
