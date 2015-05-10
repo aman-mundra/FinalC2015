@@ -17,9 +17,9 @@ namespace Calculator.CheckBook
     /// <summary>
     /// Interaction logic for CheckBookWindow.xaml
     /// </summary>
-    public partial class CheckBookWindow : Window
+    public partial class MainWindow : Window
     {
-        public CheckBookWindow()
+        public MainWindow()
         {
             InitializeComponent();
         }
