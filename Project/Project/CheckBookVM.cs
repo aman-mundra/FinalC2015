@@ -70,24 +70,9 @@ namespace Checkbook
                 };
             }
         }
-        private string _Name;
-        public string Name
-        {
-            get { return _Name; }
-            set { _Name = value; OnPropertyChanged(); }
-        }
-        private string _Email;
-        public string Email
-        {
-            get { return _Email; }
-            set { _Email = value; OnPropertyChanged(); }
-        }
-        private string _Picture;
-        public string Picture
-        {
-            get { return _Picture; }
-            set { _Picture = value; OnPropertyChanged(); }
-        }
+        
+
+
         public void Fill()
         {
             Transactions = _Db.Transactions.Local;

@@ -58,5 +58,6 @@ namespace Model
         public string Institution { get; set; }
         public bool Business { get; set; }
         public virtual IList<Transaction> Transactions { get; set; }
+        public decimal Balance { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace Project.Migrations
                         Name = c.String(),
                         Institution = c.String(),
                         Business = c.Boolean(nullable: false),
+                        Balance = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.Id);
             
