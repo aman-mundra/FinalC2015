@@ -30,5 +30,10 @@ namespace Checkbook
             DataContext = VM;
             VM.Fill();
         }
+
+        private void transactionsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

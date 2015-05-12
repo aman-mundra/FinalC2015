@@ -23,7 +23,7 @@
 
         <Image Height="50" Width="50" Source="{Binding Picture}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="2" />
         <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="20" Margin="55,0,0,0" ></TextBlock>
-        <DataGrid x:Name="transactionsDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding CurrentTransactions}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,0,5,0" Grid.Row="1">
+        <DataGrid x:Name="transactionsDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding CurrentTransactions}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,0,5,0" Grid.Row="1" SelectionChanged="transactionsDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Account.Name}" Header="Account" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="amountColumn" Binding="{Binding Amount}" Header="Amount" Width="SizeToHeader"/>
@@ -80,7 +80,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-        <ListView  Grid.Column="1" ItemsSource="{Binding Transactions}" IsSynchronizedWithCurrentItem="True"  SelectionMode="Single" Grid.RowSpan="2">
+        <ListView  Grid.Column="1" ItemsSource="{Binding Accounts}" IsSynchronizedWithCurrentItem="True"  SelectionMode="Single" Grid.RowSpan="2">
             <ListView.ItemContainerStyle>
                 <Style>
                     <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
@@ -89,19 +89,12 @@
             </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Amount}" x:Name="amountColumn1" Header="Amount" Width="80" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Currency2}" Header="Currency2" Width="80" />
-                    <GridViewColumn x:Name="dateColumn1" Header="Date" Width="80">
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" x:Name="nameColumn1" Header="Name" Width="80" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Balance}" Header="Balance" Width="80" />
+                    <GridViewColumn x:Name="InstColumn1" Header="Institution" Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Margin="-6,-1" Text="{Binding Date}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="payeeColumn1" Header="Payee" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Margin="-6,-1" Text="{Binding Payee}"/>
+                                <TextBlock Margin="-6,-1" Text="{Binding Institution}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
