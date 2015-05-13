@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using CheckBook;
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +14,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
-namespace Checkbook
+namespace WpfApplication2
 {
     /// <summary>
-    /// Interaction logic for CheckBookWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -29,11 +31,6 @@ namespace Checkbook
             var VM = new CheckBookVM();
             DataContext = VM;
             VM.Fill();
-        }
-
-        private void transactionsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

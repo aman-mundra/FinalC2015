@@ -49,18 +49,6 @@ namespace CheckBook
             get { return Transactions.Skip((_CurrentPage - 1) * _RowsPerPage).Take(_RowsPerPage); }
         }
 
-        public DelegateCommand MoveNext
-        {
-            get
-            {
-                return new DelegateCommand
-                {
-                    ExecuteFunction = _ => CurrentPage++,
-                    CanExecuteFunction = _ => CurrentPage * _RowsPerPage < Transactions.Count
-                };
-            }
-        }
-
         public DelegateCommand Save
         {
             get
@@ -68,7 +56,7 @@ namespace CheckBook
                 return new DelegateCommand
                 {
                     ExecuteFunction = _ => _Db.SaveChanges(),
-                    //CanExecuteFunction = _ => _newTransaction.Account != null && _newTransaction.Amount != null//_Db.ChangeTracker.HasChanges()
+                    CanExecuteFunction = _ => _newTransaction.Account != null && _newTransaction.Amount != null//_Db.ChangeTracker.HasChanges()
                 };
             }
         }

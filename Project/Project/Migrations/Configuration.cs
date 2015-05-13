@@ -10,7 +10,6 @@ namespace Project.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Model.CbDb";
         }
 
         protected override void Seed(Model.CbDb context)
