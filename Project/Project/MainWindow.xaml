@@ -23,11 +23,10 @@
 
         <Image Height="50" Width="50" Source="{Binding Picture}" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="20" Margin="55,0,0,0" ></TextBlock>
-        <DataGrid x:Name="transactionsDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding newTransaction}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,0,5,0" Grid.Row="1">
+        <DataGrid x:Name="transactionsDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Transactions}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,0,5,0" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Account.Name}" Header="Account" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="amountColumn" Binding="{Binding Amount}" Header="Amount" Width="SizeToHeader"/>
-                <DataGridTextColumn  Binding="{Binding Currency2}" Header="Currency2" Width="SizeToHeader"/>
                 <DataGridTemplateColumn x:Name="dateColumn" Header="Date" Width="SizeToHeader">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -80,7 +79,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-        <ListView  Grid.Column="1" ItemsSource="{Binding Transactions}" IsSynchronizedWithCurrentItem="True"  SelectionMode="Single" Grid.RowSpan="2">
+        <ListView  Grid.Column="1" ItemsSource="{Binding Accounts}" IsSynchronizedWithCurrentItem="True"  SelectionMode="Single" Grid.RowSpan="2">
             <ListView.ItemContainerStyle>
                 <Style>
                     <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>

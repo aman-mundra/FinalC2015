@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System.Windows;
 
 namespace CheckBook
 {
@@ -49,17 +51,41 @@ namespace CheckBook
             get { return Transactions.Skip((_CurrentPage - 1) * _RowsPerPage).Take(_RowsPerPage); }
         }
 
-        public DelegateCommand Save
+        private DelegateCommand _SaveTransaction;
+
+        public ICommand Save
         {
             get
             {
-                return new DelegateCommand
+                if (_SaveTransaction == null)
                 {
-                    ExecuteFunction = _ => _Db.SaveChanges(),
-                    CanExecuteFunction = _ => _newTransaction.Account != null && _newTransaction.Amount != null//_Db.ChangeTracker.HasChanges()
+ 
+                    _SaveTransaction = new DelegateCommand
+                    {
+                        ExecuteFunction = x  =>
+                            {
+                                _Db.Transactions.Add(_newTransaction);
+                                var updateac = (from A in Accounts where A == _newTransaction.Account select A).Single();
+                                updateac.Balance = updateac.Balance + _newTransaction.Amount; 
+                                _Db.SaveChanges();
+                                _newTransaction = new Transaction {Date = DateTime.Now};
+                            },
+                            CanExecuteFunction = _ => _newTransaction.Account != null && _newTransaction.Amount != 0
                 };
+                _newTransaction.PropertyChanged += (s, e) => _SaveTransaction.OnCanExecuteChanged();
+            }
+                return _SaveTransaction;
             }
         }
+
+
+
+
+
+                            
+                    
+
+               
 
         public DelegateCommand NewTransaction
         {
