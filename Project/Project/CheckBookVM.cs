@@ -5,14 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.Collections.ObjectModel;
-namespace Checkbook
+
+namespace CheckBook
 {
     public class CheckBookVM : BaseVM
     {
         public CheckBookVM()
         {
         }
+
         CbDb _Db = new CbDb();
+
         private int _RowsPerPage = 5;
         private int _CurrentPage = 1;
         public int CurrentPage
@@ -20,20 +23,32 @@ namespace Checkbook
             get { return _CurrentPage; }
             set { _CurrentPage = value; OnPropertyChanged(); OnPropertyChanged("CurrentTransactions"); }
         }
+
+        private Transaction _newTransaction = new Transaction { Date = DateTime.Now };
+        public Transaction newTransaction
+        {
+            get { return _newTransaction; }
+            set { _newTransaction = value; OnPropertyChanged(); }
+
+        }
+
         private ObservableCollection<Transaction> _Transactions;
         public ObservableCollection<Transaction> Transactions
         {
             get { return _Transactions; }
             set { _Transactions = value; OnPropertyChanged(); OnPropertyChanged("Accounts"); }
         }
+
         public IEnumerable<Account> Accounts
         {
             get { return _Db.Accounts.Local; }
         }
+
         public IEnumerable<Transaction> CurrentTransactions
         {
             get { return Transactions.Skip((_CurrentPage - 1) * _RowsPerPage).Take(_RowsPerPage); }
         }
+
         public DelegateCommand MoveNext
         {
             get
@@ -45,6 +60,7 @@ namespace Checkbook
                 };
             }
         }
+
         public DelegateCommand Save
         {
             get
@@ -52,10 +68,11 @@ namespace Checkbook
                 return new DelegateCommand
                 {
                     ExecuteFunction = _ => _Db.SaveChanges(),
-                    CanExecuteFunction = _ => _Db.ChangeTracker.HasChanges()
+                    //CanExecuteFunction = _ => _newTransaction.Account != null && _newTransaction.Amount != null//_Db.ChangeTracker.HasChanges()
                 };
             }
         }
+
         public DelegateCommand NewTransaction
         {
             get
@@ -70,15 +87,34 @@ namespace Checkbook
                 };
             }
         }
-        
 
+        private string _Name;
+
+        public string Name
+        {
+            get { return _Name; }
+            set { _Name = value; OnPropertyChanged(); }
+        }
+        private string _Email;
+
+        public string Email
+        {
+            get { return _Email; }
+            set { _Email = value; OnPropertyChanged(); }
+        }
+        private string _Picture;
+
+        public string Picture
+        {
+            get { return _Picture; }
+            set { _Picture = value; OnPropertyChanged(); }
+        }
 
         public void Fill()
         {
             Transactions = _Db.Transactions.Local;
             _Db.Accounts.ToList();
             _Db.Transactions.ToList();
-            //new ObservableCollection<Transaction>();
 
         }
     }
