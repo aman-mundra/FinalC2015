@@ -21,15 +21,15 @@ namespace Model
             }
         }
 
-        /* private System.Windows.Media.Brush _foregroundColor = System.Windows.Media.Brushes.Red;
+        /* private System.Windows.Media.Brush _Colour = System.Windows.Media.Brushes.Red;
 
-        public System.Windows.Media.Brush ForegroundColor
+        public System.Windows.Media.Brush Colour
         {
-            get { return _foregroundColor; }
+            get { return _Colour; }
             set
             {
-                _foregroundColor = value;
-                OnPropertyChanged("ForegroundColor");
+                Colour = value;
+                OnPropertyChanged("Colour");
             }
         } 
          */

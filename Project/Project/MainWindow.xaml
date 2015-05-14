@@ -26,7 +26,7 @@
         <DataGrid x:Name="transactionsDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Transactions}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,0,5,0" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Account.Name}" Header="Account" Width="SizeToHeader" />
-                <!-- Foreground="{Binding Path= ForegroundColor}"-->
+                <!-- Foreground="{Binding Path= Colour}"-->
                 <DataGridTextColumn x:Name="amountColumn" Binding="{Binding Amount}" Header="Amount" Width="SizeToHeader"/>
                 <DataGridTemplateColumn x:Name="dateColumn" Header="Date" Width="SizeToHeader">
                     <DataGridTemplateColumn.CellTemplate>
