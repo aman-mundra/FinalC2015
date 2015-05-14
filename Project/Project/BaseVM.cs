@@ -6,6 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+//using System.Windows.Media;
+
 namespace Model
 {
     public class BaseVM : INotifyPropertyChanged
@@ -18,6 +20,19 @@ namespace Model
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        /* private System.Windows.Media.Brush _foregroundColor = System.Windows.Media.Brushes.Red;
+
+        public System.Windows.Media.Brush ForegroundColor
+        {
+            get { return _foregroundColor; }
+            set
+            {
+                _foregroundColor = value;
+                OnPropertyChanged("ForegroundColor");
+            }
+        } 
+         */
     }
     public class DelegateCommand : ICommand
     {
